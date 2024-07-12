@@ -1,12 +1,19 @@
 import { configureStore } from "@reduxjs/toolkit";
 import addProductSlice from "./features/addProductSlice";
 import quantitySlice from "./features/quantitySlice";
+import { baseApi } from "./api/api";
+import modalSlice from "./features/modalSlice";
 
 const store = configureStore({
   reducer: {
+    [baseApi.reducerPath]: baseApi.reducer,
     product: addProductSlice,
     quantity: quantitySlice,
+    modal: modalSlice,
   },
+
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(baseApi.middleware),
 });
 
 export default store;

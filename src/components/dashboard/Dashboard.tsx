@@ -1,12 +1,14 @@
 import {  Outlet, useLocation, useNavigate } from 'react-router-dom';
 import dash from './Dashboard.module.css';
 import { dashNav } from './dashNavigation';
+import Modal from '../modal/Modal';
 const Dashboard = () => {
     const navigation = useNavigate();
     const location = useLocation().pathname;
+
     return (
 
-        <div className={`${dash.main} w-full h-[550px] flex`}>
+        <div className={`${dash.main} w-full h-[550px] flex relative`}>
            <section className="w-[20%] h-full bg-blue-100 p-3 leading-9 font-bold text-gray-500">
                {
                 dashNav.map(nav => {
@@ -30,6 +32,7 @@ const Dashboard = () => {
 
                 </div>
            </section>
+           <Modal/>
         </div>
     );
 };

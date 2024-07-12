@@ -10,18 +10,23 @@ export const addProductInput = [
     placeholder: "Brand",
   },
   {
-    type: "text",
+    type: "number",
     name: "price",
     placeholder: "Price",
   },
   {
-    type: "text",
+    type: "number",
     name: "rating",
     placeholder: "Rating",
   },
   {
-    type: "text",
+    type: "number",
     name: "availableQuantity",
     placeholder: "Available Quantity",
+  },
+  {
+    type: "text",
+    name: "img",
+    placeholder: "Image",
   },
 ];
