@@ -1,0 +1,87 @@
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { TProductItem } from "../../featuredProducts/productItems";
+
+type TSelectQuantity = {
+  selectQuantity: number;
+};
+
+type TInitialState = {
+  product: (TProductItem & TSelectQuantity)[];
+};
+
+const initialState: TInitialState = {
+  product: [],
+};
+
+const productSlice = createSlice({
+  name: "product",
+  initialState,
+  reducers: {
+    addProduct: (state, action: PayloadAction<TProductItem>) => {
+      state.product.push({ ...action.payload, selectQuantity: 1 });
+    },
+    increaseAndDecreaseQuantity: (
+      state,
+      action: PayloadAction<{ id: number; data?: TProductItem[]; type: string }>
+    ) => {
+      const cartData = action.payload.data;
+      const increaseQuantity = cartData?.find(
+        (f, i) => i + 1 === action.payload.id
+      );
+
+      const { selectQuantity, ...remaining } = increaseQuantity;
+
+      let updatedQuantity;
+      if (
+        action.payload.type === "increaseBtn" ||
+        action.payload.type === "addFromCart"
+      ) {
+        if (selectQuantity < increaseQuantity.availableQuantity) {
+          updatedQuantity = selectQuantity + 1;
+        } else {
+          return;
+        }
+      }
+      if (action.payload.type === "decreaseBtn") {
+        if (selectQuantity < 2) {
+          return;
+        }
+
+        updatedQuantity = selectQuantity - 1;
+      }
+
+      const updatedData = {
+        ...remaining,
+        selectQuantity: updatedQuantity,
+      };
+
+      if (
+        action.payload.type === "addFromCart" ||
+        action.payload.type === "increaseBtn"
+      ) {
+        state.product = cartData?.map((item, index) => {
+          return index + 1 === action.payload.id ? updatedData : item;
+        });
+      }
+      if (action.payload.type === "decreaseBtn") {
+        state.product = cartData?.map((item, index) => {
+          return index + 1 === action.payload.id ? updatedData : item;
+        });
+      }
+    },
+    deleteProduct: (
+      state,
+      action: PayloadAction<{ id: number; data: TProductItem[] }>
+    ) => {
+      const findProduct = action.payload.data.filter(
+        (f, i) => i + 1 !== action.payload.id
+      );
+
+      state.product = findProduct;
+    },
+  },
+});
+
+export const { addProduct, increaseAndDecreaseQuantity, deleteProduct } =
+  productSlice.actions;
+export default productSlice.reducer;

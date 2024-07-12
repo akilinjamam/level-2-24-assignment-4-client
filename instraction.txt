@@ -1,0 +1,2 @@
+1. primary color: #bb22f2
+2. secondary color: #d999f0
