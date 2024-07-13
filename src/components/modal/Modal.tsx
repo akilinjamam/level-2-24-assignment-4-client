@@ -13,7 +13,7 @@ const Modal = () => {
     const [product,setProduct] = useState({});
     const dispatch = useDispatch()
     const [deleteProduct] = useDeleteProductMutation()
-    const [updateData] = useUpdateProductMutation()
+    const [updateData, {status}] = useUpdateProductMutation()
 
     const handleDelete = () => {
         const deletedId = {id}
@@ -26,7 +26,17 @@ const Modal = () => {
     },[data])
 
     const handleEdit = () => {
-        updateData(product)
+        const {price, availableQuantity, rating, ...remaining} = product;
+
+        const newData = {
+            ...remaining,
+            price: parseInt(price),
+            rating: parseInt(rating),
+            availableQuantity: parseInt(availableQuantity),
+        }
+
+        updateData(newData)
+        console.log(status)
         dispatch(openModal({type: 'editModal', open: false}))
     }
     
@@ -78,7 +88,7 @@ const Modal = () => {
                                 )
                             })
                         }
-                        <textarea style={{maxHeight:'50px'}} className="w-[250px]" value={product?.description} name="" id="" 
+                        <textarea style={{maxHeight:'50px'}} className="w-[250px] px-2" value={product?.description} name="" id="" 
                         onChange={(e) => setProduct({...product, description: e.target.value})}
                         required
                         ></textarea>

@@ -5,13 +5,16 @@ import { countStars } from "../featuredProducts/startCount";
 import detail from './ProductDetail.module.css';
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { addProduct, increaseAndDecreaseQuantity,  } from "../redux/features/addProductSlice";
+import { useGetProductsQuery } from "../redux/api/api";
 const ProductDetails = () => {
 
     const {id} = useParams();
     const navigate = useNavigate()
+    
+    const {data: products} = useGetProductsQuery('')
 
-    const findProduct = productItems.find((f,i) => (i+1) === parseInt(id as string) ) as TProductItem
-
+    const findProduct = products?.data?.find((f,i:number) => (i+1) === parseInt(id as string) ) as TProductItem
+    console.log(findProduct)
     const dispatch = useAppDispatch();
     const {product} = useAppSelector(state => state.product)
 
@@ -40,10 +43,10 @@ const ProductDetails = () => {
                 <p>Price: {findProduct?.price}</p>
                 <div className="flex items-center">
                     <p>Raiting:</p>
-                    {countStars(findProduct?.rating as string)}
+                    {countStars(findProduct?.rating)}
                 </div>
                 <p>Description:</p>
-                <p title={findProduct?.description} className="leading-5">{findProduct.description.length > 100 ? findProduct?.description?.slice(100) + '...view more' : findProduct?.description}</p>
+                <p title={findProduct?.description} className="leading-5">{findProduct?.description.length > 100 ? findProduct?.description?.slice(100) + '...view more' : findProduct?.description}</p>
                
                     <button onClick={addProducts} style={{position:'absolute', bottom:'10px'}} className=" w-[96%] flex items-center justify-center bg-purple-600 hover:bg-purple-700 text-white font-bold py-1 px-3 rounded-lg">
                         <div className="flex items-center">

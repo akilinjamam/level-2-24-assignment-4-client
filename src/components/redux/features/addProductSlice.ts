@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { TProductItem } from "../../featuredProducts/productItems";
 
-type TSelectQuantity = {
+export type TSelectQuantity = {
   selectQuantity: number;
 };
 
@@ -36,7 +36,7 @@ const productSlice = createSlice({
         action.payload.type === "increaseBtn" ||
         action.payload.type === "addFromCart"
       ) {
-        if (selectQuantity < increaseQuantity.availableQuantity) {
+        if (selectQuantity <= increaseQuantity.availableQuantity) {
           updatedQuantity = selectQuantity + 1;
         } else {
           return;
@@ -79,9 +79,25 @@ const productSlice = createSlice({
 
       state.product = findProduct;
     },
+    updateQuantity: (
+      state,
+      action: PayloadAction<TProductItem & TSelectQuantity>
+    ) => {
+      const findData = state.product.map((item) => {
+        return item?._id === action.payload._id ? action.payload : item;
+      });
+
+      console.log(findData);
+
+      state.product = findData;
+    },
   },
 });
 
-export const { addProduct, increaseAndDecreaseQuantity, deleteProduct } =
-  productSlice.actions;
+export const {
+  addProduct,
+  increaseAndDecreaseQuantity,
+  deleteProduct,
+  updateQuantity,
+} = productSlice.actions;
 export default productSlice.reducer;

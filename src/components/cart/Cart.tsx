@@ -1,26 +1,52 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import cart from './Cart.module.css';
 // import { NavLink } from "react-router-dom";
 import { countStars } from "../featuredProducts/startCount";
-import Button from "../button/Button";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
-import { addQuantity } from "../redux/features/quantitySlice";
+
 import { deleted, leftArrow , rightArrow } from "../../icons/icons";
-import { deleteProduct, increaseAndDecreaseQuantity } from "../redux/features/addProductSlice";
+import { deleteProduct, increaseAndDecreaseQuantity, TSelectQuantity } from "../redux/features/addProductSlice";
+import { TProductItem } from '../featuredProducts/productItems';
+import { useNavigate} from 'react-router-dom';
+import { toast } from 'react-toastify';
+
+
 
 
 const Cart = () => {
-   
+  
+   const dispatch = useAppDispatch()
     const {product} = useAppSelector((state)=> state.product)
-    const {qunatity} = useAppSelector((state) => state.quantity)
-    const dispatch = useAppDispatch()
+    
 
+    const navigate = useNavigate()
+    
+    const check = (value:number) => {
+        const findProduct = product?.find((f,i) => (i+1) === value ) as TProductItem & TSelectQuantity;
+
+        if(findProduct.availableQuantity < findProduct.selectQuantity){
+             return 'cursor-not-allowed bg-gray-500'
+        }else{
+            return 'cursor-pointer bg-purple-500 '
+        }
+
+    }
+
+    const handleNavigate = (value: number) => {
+
+        const findProduct = product?.find((f,i) => (i+1) === value ) as TProductItem & TSelectQuantity;
+
+        if(findProduct.availableQuantity < findProduct.selectQuantity){
+            toast.error('out of stock')
+        }else{
+            navigate(`/checkout/${value}`)
+        }
+    }
    
 
     return (
         <div className={`${cart.main}`}>
-            <div className="w-full h-[50px] bg-purple-50 rounded-lg">
-            <p>quantity: {qunatity}</p>
-            </div>
+            
             {
                 product.map((item, index) => {
                     return (
@@ -49,17 +75,22 @@ const Cart = () => {
                                     </div>
                                 </div>
                             
-                                <p>Total Price: {parseInt(item.price) * item.selectQuantity}</p>
+                                <p>Total Price: {item.price * item.selectQuantity}</p>
                                 
                             
-                                <p onClick={() => dispatch(addQuantity(1))}><Button>Details</Button></p>
+                                
+                                <button onClick={() => handleNavigate(index+1)} className={`${check(index+1)} my-3 px-3 py-1 rounded-lg text-white font-bold`}>Procced to Checkout</button>
                                 
                             </section>
                         </div>
                     )
                 })
             }
-    </div>
+
+            <div className="w-full h-[50px] bg-purple-50 rounded-lg">
+           
+           </div>
+        </div>
     );
 };
 

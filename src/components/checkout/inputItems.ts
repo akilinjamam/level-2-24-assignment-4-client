@@ -12,7 +12,7 @@ export const inputItems = [
     placeHolder: "Email",
   },
   {
-    type: "text",
+    type: "number",
     name: "phone",
     id: "phone",
     placeHolder: "Phone",

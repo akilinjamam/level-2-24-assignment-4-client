@@ -31,12 +31,14 @@ const Navbar = () => {
                         )
                     } )
                    }
-                  <div style={{position:'relative'}}>
-                    <p>{cart}</p>
-                    <div style={{display: `${product.length === 0 ? 'none' : 'block'}`}}>
-                        <p className='bg-red-500 font-bold text-sm w-[20px] h-[20px] flex items-center justify-center text-white rounded-full'  style={{position:'absolute', top:'-19px',right:'-10px',}}>{product.length}</p>
-                    </div>
-                  </div>
+                  <NavLink to='/cart/1'>
+                        <div style={{position:'relative'}}>
+                            <p>{cart}</p>
+                            <div style={{display: `${product.length === 0 ? 'none' : 'block'}`}}>
+                                <p className='bg-red-500 font-bold text-sm w-[20px] h-[20px] flex items-center justify-center text-white rounded-full'  style={{position:'absolute', top:'-19px',right:'-10px',}}>{product.length}</p>
+                            </div>
+                        </div>
+                  </NavLink>
                 </section>                    
             </nav>
         </div>

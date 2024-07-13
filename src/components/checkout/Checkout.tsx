@@ -1,11 +1,18 @@
-import { useState } from 'react';
+
 import checkout from './Checkout.module.css'
 import { inputItems } from './inputItems';
-import Button from '../button/Button';
-import { NavLink } from 'react-router-dom';
+
+import { useParams } from 'react-router-dom';
+import { useAppSelector } from '../redux/hooks';
+import { TProductItem } from '../featuredProducts/productItems';
+import { TSelectQuantity } from '../redux/features/addProductSlice';
+import { toast } from 'react-toastify';
+import { useUpdateProductMutation } from '../redux/api/api';
+import { useState } from 'react';
 
 
 const Checkout = () => {
+    const {id} = useParams();
     type TUser = {
         email: string;
         phone: string;
@@ -19,12 +26,41 @@ const Checkout = () => {
         address:''
     }
     const [user, setUser] = useState(initialInfo);
+    const {product} = useAppSelector(state => state.product);
+
+    console.log(product)
+
+    const findProduct = product?.find((f,i) => (i+1) === parseInt(id as string)) as TProductItem & TSelectQuantity
+
+    const [updateData, {status}] = useUpdateProductMutation()
+        console.log(status)
+    const placeOrder = async (value:string) => {
+       
+
+        if(value === 'cod'){
+            console.log(user)
+            if(user.address && user.phone && user.email && user.name){
+                const remainingQuantity = findProduct?.availableQuantity 
+                const id = findProduct?._id 
+
+                const updatedProductData = {
+                    _id: id,
+                    availableQuantity: remainingQuantity
+                }
+               await updateData(updatedProductData)
+
+            
+            }else{
+                toast.error('please fill all input fields')
+            }
+        }
+    }
 
 
 
     return (
-        <div className={`${checkout.main} w-full h-[350px] bg-purple-50 rounded-log p-3`}>
-           <p className="my-3 text-gray-700 text-2xl font-bold">Give us Delivery Info:</p>
+        <div className={`${checkout.main} w-full h-[350px] bg-purple-50 rounded-log p-3 text-gray-600`}>
+           <p className="my-3 text-gray-600 text-2xl font-bold">Give us Delivery Info:</p>
            <hr />
             <div className='flex items-center justify-between w-full h-[200px]'>
                 <div className='w-[50%] h-full'>
@@ -42,7 +78,9 @@ const Checkout = () => {
                             {
                                 inputItems.map((input, index) => {
                                     return (
-                                        <div className='my-3'><input key={index+1} type={input.type} /></div>
+                                        <div className='my-3'><input key={index+1} type={input.type} 
+                                        onChange={(e) => setUser({...user, [input?.name] : e.target.value})}
+                                        /></div>
                                     )
                                 })
                             }
@@ -50,26 +88,30 @@ const Checkout = () => {
                     </div>
                 </div>
                 <div className='w-[50%] h-[100%]  p-3'>
-                    <p className='my-3'>Product: </p>
+                    <p className='my-3 font-bold '>Product: {findProduct?.title}</p>
                     <div className='flex items-center justify-between'>
                         <div className='w-[90%] h-full'>
                             <p className='my-3'>Price: </p>
                             <p className='my-3'>Quantity: </p>
                         </div>
                         <div className='w-[10%] h-full'>
-                            <p className='my-3 text-right'>340 </p>
-                            <p className='my-3 text-right'>20 </p>
+                            <p className='my-3 text-right'>{findProduct?.price} </p>
+                            <p className='my-3 text-right'>{findProduct?.selectQuantity}</p>
                         </div>
                     </div>
                     <hr />
                     <div className='flex items-center justify-between'>
                         <p className='my-3'>Total: </p>
-                        <p className='my-3'>6800 </p>
+                        <p className='my-3'>{findProduct?.price * findProduct?.selectQuantity}</p>
                     </div>
                 </div>
             </div>
             <div className='w-full h-[80px] flex items-center justify-end'>
-                <NavLink to='/'><Button>Cash On Delivery</Button></NavLink>
+                            <select name="" id="" onClick={(e) => placeOrder(e.target.value)}>
+                                <option value="">Payment Method</option>
+                                <option value="cod">Place Order (Cash on Delivery)</option>
+                                <option value="online">Place Order (stripe)</option>
+                            </select>
             </div>
         </div>
     );

@@ -6,10 +6,14 @@ import { productItems } from "./productItems";
 import { countStars } from "./startCount";
 import Button from "../button/Button";
 import { NavLink} from "react-router-dom";
+import { useGetProductsQuery } from "../redux/api/api";
 
 const Featured = () => {
     
-   
+   const {data: allProducts} = useGetProductsQuery('')
+
+
+console.log(allProducts?.data)
 
     const settings = {
         dots: true,
@@ -29,7 +33,7 @@ const Featured = () => {
             <div className="my-6">
               <Slider {...settings}>
                     {
-                         productItems.map((items, index) => {
+                         allProducts?.data?.map((items, index) => {
                          return (
                              <div key={index+1}>
                                  <div  className="w-[350px] h-[485px] bg-blue-50 p-3 rounded-md">
@@ -55,7 +59,7 @@ const Featured = () => {
              </Slider>
             </div>
             <div className="my-6 w-full h-[75px] flex items-center justify-center">
-                <Button>All Products</Button>
+               <NavLink to='/products'><Button>All Products</Button></NavLink>
             </div>
         </div>
     );
