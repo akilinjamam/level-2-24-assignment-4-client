@@ -1,4 +1,11 @@
-export const addProductInputForEdit = [
+type TAddProductInputForEdit = {
+  type: string;
+  name: string;
+  placeholder: string;
+}
+
+
+export const addProductInputForEdit:TAddProductInputForEdit[] = [
     {
       type: "text",
       name: "title",

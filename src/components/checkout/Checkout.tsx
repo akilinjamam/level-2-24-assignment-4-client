@@ -51,6 +51,7 @@ const Checkout = () => {
                 }
                await updateData(updatedProductData)
 
+               // eslint-disable-next-line @typescript-eslint/no-unused-vars
                const {availableQuantity, ...remaining} = findProduct
 
                const updateCartData = {
@@ -119,7 +120,7 @@ const Checkout = () => {
                 </div>
             </div>
             <div className='w-full h-[80px] flex items-center justify-end'>
-                            <select name="" id="" onClick={(e) => placeOrder(e.target.value)}>
+                            <select name="" id=""   onChange={(e) => placeOrder((e.target as HTMLSelectElement).value)}>
                                 <option value="">Payment Method</option>
                                 <option value="cod">Place Order (Cash on Delivery)</option>
                                 <option value="online">Place Order (stripe)</option>

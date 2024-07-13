@@ -1,12 +1,12 @@
 export type TProductItem = {
   _id?: string;
-  img: string;
+  img?: string;
   title: string;
   brand: string;
   price: number;
   availableQuantity: number;
   rating: number;
-  description: string;
+  description?: string;
 };
 
 export const productItems: TProductItem[] = [

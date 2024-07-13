@@ -1,5 +1,12 @@
+import { SetStateAction } from "react";
+
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const updloadCloudinaryImage = (imgFile: any, setImgHolder) => {
+export const updloadCloudinaryImage = (
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  imgFile: any,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  setImgHolder: { (value: SetStateAction<string>): void; (arg0: any): void }
+) => {
   const data = new FormData();
   data.append("file", imgFile);
   data.append("upload_preset", "smipgehv");

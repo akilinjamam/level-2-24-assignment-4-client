@@ -2,11 +2,11 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 import Slider from "react-slick";
-import { productItems } from "./productItems";
 import { countStars } from "./startCount";
 import Button from "../button/Button";
 import { NavLink} from "react-router-dom";
 import { useGetProductsQuery } from "../redux/api/api";
+import { TProductItem } from "./productItems";
 
 const Featured = () => {
     
@@ -33,7 +33,7 @@ console.log(allProducts?.data)
             <div className="my-6">
               <Slider {...settings}>
                     {
-                         allProducts?.data?.map((items, index) => {
+                         allProducts?.data?.map((items:TProductItem, index:number) => {
                          return (
                              <div key={index+1}>
                                  <div  className="w-[350px] h-[485px] bg-blue-50 p-3 rounded-md">
