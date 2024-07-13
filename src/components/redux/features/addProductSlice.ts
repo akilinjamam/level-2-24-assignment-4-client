@@ -83,8 +83,19 @@ const productSlice = createSlice({
       state,
       action: PayloadAction<TProductItem & TSelectQuantity>
     ) => {
+      const findFromState = state.product.find(
+        (f) => f?._id === action.payload._id
+      ) as TProductItem & TSelectQuantity;
+
+      const newUpdatedData = {
+        ...action.payload,
+        selectQuantity: findFromState.selectQuantity,
+      };
+
+      console.log(newUpdatedData);
+
       const findData = state.product.map((item) => {
-        return item?._id === action.payload._id ? action.payload : item;
+        return item?._id === action.payload._id ? newUpdatedData : item;
       });
 
       console.log(findData);

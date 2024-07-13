@@ -8,6 +8,7 @@ import Cart from "../components/cart/Cart";
 import Dashboard from "../components/dashboard/Dashboard";
 import DashProduct from "../components/dashboard/dashProductList/DashProduct";
 import DashAddProduct from "../components/dashboard/dashAddProduct/DashAddProduct";
+import Success from "../components/success/Success";
 
 
 
@@ -31,6 +32,10 @@ export const router = createBrowserRouter([
     {
         path: '/cart/:id',
         element: <Layout><Cart/></Layout>
+    },
+    {
+        path: '/success',
+        element: <Layout><Success/></Layout>
     },
     {
         path: '/dashboard',

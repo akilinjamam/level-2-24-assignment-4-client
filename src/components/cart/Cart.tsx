@@ -9,6 +9,8 @@ import { deleteProduct, increaseAndDecreaseQuantity, TSelectQuantity } from "../
 import { TProductItem } from '../featuredProducts/productItems';
 import { useNavigate} from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { useEffect } from 'react';
+import { calculatePrice } from '../calculation/calculation';
 
 
 
@@ -42,6 +44,12 @@ const Cart = () => {
             navigate(`/checkout/${value}`)
         }
     }
+
+
+    const price =  calculatePrice(product?.map(item => (item.price * item.selectQuantity)));
+   
+
+    console.log(price)
    
 
     return (
@@ -87,8 +95,9 @@ const Cart = () => {
                 })
             }
 
-            <div className="w-full h-[50px] bg-purple-50 rounded-lg">
-           
+            <div className="w-full h-[50px] bg-purple-50 rounded-lg my-6 flex items-center justify-end font-bold text-gray-600 px-2">
+                <p>Total Price: {price}</p>
+               
            </div>
         </div>
     );

@@ -2,16 +2,17 @@
 import checkout from './Checkout.module.css'
 import { inputItems } from './inputItems';
 
-import { useParams } from 'react-router-dom';
-import { useAppSelector } from '../redux/hooks';
+import { useNavigate, useParams } from 'react-router-dom';
+import { useAppDispatch, useAppSelector } from '../redux/hooks';
 import { TProductItem } from '../featuredProducts/productItems';
-import { TSelectQuantity } from '../redux/features/addProductSlice';
+import { TSelectQuantity, updateQuantity } from '../redux/features/addProductSlice';
 import { toast } from 'react-toastify';
 import { useUpdateProductMutation } from '../redux/api/api';
 import { useState } from 'react';
 
 
 const Checkout = () => {
+    const navigate = useNavigate()
     const {id} = useParams();
     type TUser = {
         email: string;
@@ -27,6 +28,7 @@ const Checkout = () => {
     }
     const [user, setUser] = useState(initialInfo);
     const {product} = useAppSelector(state => state.product);
+    const dispath = useAppDispatch()
 
     console.log(product)
 
@@ -40,7 +42,7 @@ const Checkout = () => {
         if(value === 'cod'){
             console.log(user)
             if(user.address && user.phone && user.email && user.name){
-                const remainingQuantity = findProduct?.availableQuantity 
+                const remainingQuantity = findProduct?.availableQuantity - findProduct?.selectQuantity
                 const id = findProduct?._id 
 
                 const updatedProductData = {
@@ -49,6 +51,16 @@ const Checkout = () => {
                 }
                await updateData(updatedProductData)
 
+               const {availableQuantity, ...remaining} = findProduct
+
+               const updateCartData = {
+                ...remaining,
+                availableQuantity: remainingQuantity
+                
+               }
+
+               dispath(updateQuantity(updateCartData))
+               navigate('/success')
             
             }else{
                 toast.error('please fill all input fields')

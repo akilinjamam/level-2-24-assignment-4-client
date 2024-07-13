@@ -6,6 +6,7 @@ import { useDeleteProductMutation, useUpdateProductMutation } from "../redux/api
 import { addProductInput } from "../dashboard/dashAddProduct/addProductInput";
 import { useEffect, useState } from "react";
 import Button from "../button/Button";
+import { updateQuantity } from "../redux/features/addProductSlice";
 
 
 const Modal = () => {
@@ -38,6 +39,15 @@ const Modal = () => {
         updateData(newData)
         console.log(status)
         dispatch(openModal({type: 'editModal', open: false}))
+
+       const {description, ...restData} = newData;
+       
+       const newDataForUpdateCart = {
+        ...restData
+       }
+
+       dispatch(updateQuantity(newDataForUpdateCart))
+
     }
     
     return (
