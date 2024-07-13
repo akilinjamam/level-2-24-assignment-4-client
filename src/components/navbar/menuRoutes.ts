@@ -18,12 +18,12 @@ export const navManuRoutes: TNav[] = [
   {
     name: "About Us",
     icon: "",
-    link: "",
+    link: "/about",
   },
   {
     name: "Contact Us",
     icon: "",
-    link: "",
+    link: "/contact",
   },
   {
     name: "Dashboard",

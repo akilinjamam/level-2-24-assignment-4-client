@@ -7,6 +7,7 @@ import { addProductInput } from "../dashboard/dashAddProduct/addProductInput";
 import { useEffect, useState } from "react";
 import Button from "../button/Button";
 import { updateQuantity } from "../redux/features/addProductSlice";
+import { addProductInputForEdit } from "./inputFieldsForEdit";
 
 
 const Modal = () => {
@@ -89,7 +90,7 @@ const Modal = () => {
                     </div>
                     <div>
                         {
-                            addProductInput.map(input => {
+                            addProductInputForEdit.map(input => {
                                 return (
                                     <input className="block mb-2 leading-8 w-[250px] px-2" type={input.type} value={product[input.name]}
                                     onChange={(e) => setProduct({...product, [input.name] : e.target.value})}

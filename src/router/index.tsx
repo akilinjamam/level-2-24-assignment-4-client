@@ -9,6 +9,8 @@ import Dashboard from "../components/dashboard/Dashboard";
 import DashProduct from "../components/dashboard/dashProductList/DashProduct";
 import DashAddProduct from "../components/dashboard/dashAddProduct/DashAddProduct";
 import Success from "../components/success/Success";
+import About from "../components/about/About";
+import Contact from "../components/contactUs/Contact";
 
 
 
@@ -36,6 +38,14 @@ export const router = createBrowserRouter([
     {
         path: '/success',
         element: <Layout><Success/></Layout>
+    },
+    {
+        path: '/about',
+        element: <Layout><About/></Layout>
+    },
+    {
+        path: '/contact',
+        element: <Layout><Contact/></Layout>
     },
     {
         path: '/dashboard',

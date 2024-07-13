@@ -34,7 +34,7 @@ const ProductDetails = () => {
     return (
         <div className={`${detail.main} w-full h-[500px] bg-purple-50 rounded-lg p-3 flex items-center justify-between`}>
             <section className="w-[50%] h-full bg-yellow-100 rounded-lg ">
-
+                <img style={{width:'100%', height:'100%', borderRadius:'10px'}} src={findProduct?.img} alt="" />
             </section>
             <section style={{position:'relative'}} className="w-[49%] h-full rounded-lg p-3 leading-9 ">
                 <p>Title: {findProduct?.title}</p>

@@ -16,10 +16,10 @@ const Products = () => {
                 products?.data?.map((item:TProductItem, index:number) => {
                     return (
                         <div key={index+1} className="w-full h-[330px] bg-purple-50 rounded-lg my-6 p-3 flex items-center justify-between">
-                            <section className="w-[30%] h-full bg-yellow-100 rounded-lg">
-
+                            <section className="w-[30%] h-full  rounded-lg">
+                                <img style={{width:'400px', height:'300px', borderRadius:'10px'}} src={item?.img} alt="" />
                             </section>
-                            <section className="w-[69%] h-full bg-yellow-100 rounded-lg leading-8 p-3 text-gray-700">
+                            <section className="w-[69%] h-full  rounded-lg leading-8 p-3 text-gray-700">
                                 <p>Title: {item.title}</p>
                                 <p>Brand: {item.brand}</p>
                                 <p>Available Quantity: {item.brand}</p>

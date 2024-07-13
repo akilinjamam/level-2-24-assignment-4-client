@@ -1,4 +1,6 @@
 import CustomerReview from "../customerReview/customerReview";
+import Extra from "../extra/Extra";
+import ExtraTwo from "../extra/ExtraTwo";
 import FeaturedBrand from "../featuredBrand/FeaturedBrand";
 import Featured from "../featuredProducts/Featured";
 import Footer from "../footer/Footer";
@@ -14,6 +16,8 @@ const Home = () => {
            <Featured/>
            <FeaturedBrand/>
            <CustomerReview/>
+           <Extra/>
+           <ExtraTwo/>
            <Footer/>
         </div>
     );

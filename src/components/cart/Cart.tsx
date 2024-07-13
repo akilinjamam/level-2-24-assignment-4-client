@@ -45,12 +45,7 @@ const Cart = () => {
         }
     }
 
-
     const price =  calculatePrice(product?.map(item => (item.price * item.selectQuantity)));
-   
-
-    console.log(price)
-   
 
     return (
         <div className={`${cart.main}`}>
@@ -60,7 +55,7 @@ const Cart = () => {
                     return (
                         <div key={index+1} className="w-full h-[350px] bg-purple-50 rounded-lg my-6 p-3 flex items-center justify-between">
                             <section className="w-[30%] h-full bg-yellow-100 rounded-lg">
-
+                                <img style={{height:'100%', borderRadius:'10px'}} src={item.img} alt="" />
                             </section>
                             <section className="w-[69%] h-full rounded-lg leading-8 p-3 text-gray-700">
                                 <div className="w-full flex items-center justify-between">

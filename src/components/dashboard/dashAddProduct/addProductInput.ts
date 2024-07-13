@@ -24,9 +24,4 @@ export const addProductInput = [
     name: "availableQuantity",
     placeholder: "Available Quantity",
   },
-  {
-    type: "text",
-    name: "img",
-    placeholder: "Image",
-  },
 ];
