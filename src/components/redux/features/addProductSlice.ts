@@ -26,7 +26,7 @@ const productSlice = createSlice({
     ) => {
       const cartData = action?.payload?.data;
       const increaseQuantity = cartData?.find(
-        (f, i) => i + 1 === action.payload.id
+        (_f, i) => i + 1 === action.payload.id
       ) as TProductItem;
 
       const { selectQuantity, ...remaining } =
@@ -75,7 +75,7 @@ const productSlice = createSlice({
       action: PayloadAction<{ id: number; data: TProductItem[] }>
     ) => {
       const findProduct = action.payload.data.filter(
-        (f, i) => i + 1 !== action.payload.id
+        (_f, i) => i + 1 !== action.payload.id
       ) as (TProductItem & TSelectQuantity)[];
 
       state.product = findProduct;

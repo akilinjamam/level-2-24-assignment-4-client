@@ -1,6 +1,6 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { cart } from "../../icons/icons";
-import { productItems, TProductItem } from "../featuredProducts/productItems";
+import {  TProductItem } from "../featuredProducts/productItems";
 import { countStars } from "../featuredProducts/startCount";
 import detail from './ProductDetail.module.css';
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
@@ -13,12 +13,13 @@ const ProductDetails = () => {
     
     const {data: products} = useGetProductsQuery('')
 
-    const findProduct = products?.data?.find((f,i:number) => (i+1) === parseInt(id as string) ) as TProductItem
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const findProduct = products?.data?.find((_f:any,i:number) => (i+1) === parseInt(id as string) ) as TProductItem
     console.log(findProduct)
     const dispatch = useAppDispatch();
     const {product} = useAppSelector(state => state.product)
 
-    const findCartProduct = product?.find((f, i) => (i+1) === parseInt(id as string) )
+    const findCartProduct = product?.find((_f, i) => (i+1) === parseInt(id as string) )
 
     const addProducts = () => {
 
@@ -46,7 +47,12 @@ const ProductDetails = () => {
                     {countStars(findProduct?.rating)}
                 </div>
                 <p>Description:</p>
-                <p title={findProduct?.description} className="leading-5">{findProduct?.description.length > 100 ? findProduct?.description?.slice(100) + '...view more' : findProduct?.description}</p>
+                <p title={findProduct?.description} className="leading-5">
+                    {findProduct?.description && findProduct?.description.length > 100 
+                    ? findProduct.description.slice(0, 100) + '...view more'
+                    : findProduct?.description
+                    }
+                </p>
                
                     <button onClick={addProducts} style={{position:'absolute', bottom:'10px'}} className=" w-[96%] flex items-center justify-center bg-purple-600 hover:bg-purple-700 text-white font-bold py-1 px-3 rounded-lg">
                         <div className="flex items-center">

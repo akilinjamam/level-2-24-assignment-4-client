@@ -9,7 +9,6 @@ import { deleteProduct, increaseAndDecreaseQuantity, TSelectQuantity } from "../
 import { TProductItem } from '../featuredProducts/productItems';
 import { useNavigate} from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { useEffect } from 'react';
 import { calculatePrice } from '../calculation/calculation';
 
 
@@ -24,7 +23,7 @@ const Cart = () => {
     const navigate = useNavigate()
     
     const check = (value:number) => {
-        const findProduct = product?.find((f,i) => (i+1) === value ) as TProductItem & TSelectQuantity;
+        const findProduct = product?.find((_f,i) => (i+1) === value ) as TProductItem & TSelectQuantity;
 
         if(findProduct.availableQuantity < findProduct.selectQuantity){
              return 'cursor-not-allowed bg-gray-500'
@@ -36,7 +35,7 @@ const Cart = () => {
 
     const handleNavigate = (value: number) => {
 
-        const findProduct = product?.find((f,i) => (i+1) === value ) as TProductItem & TSelectQuantity;
+        const findProduct = product?.find((_f,i) => (i+1) === value ) as TProductItem & TSelectQuantity;
 
         if(findProduct.availableQuantity < findProduct.selectQuantity){
             toast.error('out of stock')
