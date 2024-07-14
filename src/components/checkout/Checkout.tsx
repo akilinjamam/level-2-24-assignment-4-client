@@ -32,7 +32,7 @@ const Checkout = () => {
 
     console.log(product)
 
-    const findProduct = product?.find((f,i) => (i+1) === parseInt(id as string)) as TProductItem & TSelectQuantity
+    const findProduct = product?.find((_f,i) => (i+1) === parseInt(id as string)) as TProductItem & TSelectQuantity
 
     const [updateData, {status}] = useUpdateProductMutation()
         console.log(status)
