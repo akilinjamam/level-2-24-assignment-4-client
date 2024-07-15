@@ -54,11 +54,11 @@ const Cart = () => {
                 ?
                 product.map((item, index) => {
                     return (
-                        <div key={index+1} className="w-full h-[350px] bg-purple-50 rounded-lg my-6 p-3 flex items-center justify-between">
-                            <section className="w-[30%] h-full bg-yellow-100 rounded-lg">
+                        <div key={index+1} className="w-full lg:h-[350px] sm:h-auto xsm:h-auto bg-purple-50 rounded-lg my-6 p-3 lg:flex lg:items-center lg:justify-between">
+                            <section className="lg:w-[30%] sm:w-full xsm:w-full h-full bg-yellow-100 rounded-lg">
                                 <img style={{height:'100%', borderRadius:'10px'}} src={item.img} alt="" />
                             </section>
-                            <section className="w-[69%] h-full rounded-lg leading-8 p-3 text-gray-700">
+                            <section className="lg:w-[69%] sm:w-full xsm:w-full h-full rounded-lg leading-8 p-3 text-gray-700">
                                 <div className="w-full flex items-center justify-between">
                                 <p>Title: {item?.title}</p>
                                 <button onClick={() => dispatch(deleteProduct({id: (index+1), data: product}))}>{deleted}</button>

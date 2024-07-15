@@ -1,11 +1,11 @@
 import { navManuRoutes } from "../navbar/menuRoutes";
 import { socialIcons } from "./socialIcons";
-
+import footer from './Footer.module.css';
 
 const Footer = () => {
     return (
-        <div className="w-full h-[200px] bg-gray-100 p-3 flex justify-between items-center my-6 rounded-lg">
-            <section className="w-[350px] h-full">
+        <div className={`${footer.main} w-full lg:h-[200px] sm:h-auto xsm:h-auto  bg-gray-100 p-3 flex justify-between items-center my-6 rounded-lg`}>
+            <section className="lg:w-[350px]  xsm:w-[50%] sm:w-[50%] lg:h-full xsm:h-auto sm:h-auto">
                 <p className="font-bold text-xl mb-3">All Navigations:</p>
                 {
                     navManuRoutes.map(nav => {
@@ -15,7 +15,7 @@ const Footer = () => {
                     })
                 }
             </section>            
-            <section className="w-[350px] h-full ">
+            <section className="w-[350px]  xsm:w-[50%] sm:w-[50%] lg:h-full xsm:h-auto sm:h-auto ">
                 <p className="font-bold text-xl mb-3">Contact Info:</p>
                 {
                     navManuRoutes?.slice(2,4).map((nav, index) => {
@@ -25,7 +25,7 @@ const Footer = () => {
                     })
                 }
             </section>            
-            <section className="w-[350px] h-full">
+            <section className="lg:w-[350px] lg:h-full sm:w-full xsm:w-full xsm:h-auto sm:h-auto xsm:my-6">
                 {
                     socialIcons.map((icon, index) => {
                         return (

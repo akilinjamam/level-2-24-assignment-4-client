@@ -1,12 +1,12 @@
 import keyboardPic from '../../images/showKeyboardTwo.jpg';
-
+import extras from './Extra.module.css'
 const ExtraTwo = () => {
     return (
-        <div className="w-full h-[400px] bg-purple-50 rounded-lg my-6 flex items-center justify-between p-3">
-            <section className="w-[43%] h-full bg-blue-50 flex items-center justify-center">
+        <div className={`${extras.main} w-full h-[400px] bg-purple-50 rounded-lg my-6 flex items-center justify-between p-3`}>
+            <section className="lg:w-[43%]  xsm:hidden sm:hidden lg:flex h-full bg-blue-50 flex items-center justify-center">
                 <img style={{borderRadius:'10px'}} width={350} src={keyboardPic} alt="" />
             </section>
-            <section className="w-[48%] h-full">
+            <section className="lg:w-[48%] h-full sm:w-full xsm:w-full">
                 <p className="text-gray-700 text-3xl font-bold my-6">Customizable options </p>
                 <hr />
                 <p className="text-gray-700 my-3">

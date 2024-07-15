@@ -1,9 +1,8 @@
 import keyboardPic from '../../images/showKeyboard.jpg'
-
 const Extra = () => {
     return (
-        <div className="w-full h-[400px] bg-purple-50 rounded-lg my-6 flex items-center justify-between p-3">
-            <section className="w-[48%] h-full">
+        <div className={` w-full lg:h-[400px] xsm:h-auto sm:h-auto bg-purple-50 rounded-lg my-6 flex items-center justify-between p-3`}>
+            <section className="lg:w-[48%] xsm:w-full h-full xsm:h-auto sm:h-auto">
                 <p className="text-gray-700 text-3xl font-bold my-6">Why Choose Mechanical Keyboards?</p>
                 <hr />
                 <p className="text-gray-700 my-3">
@@ -14,7 +13,7 @@ const Extra = () => {
                 Enhanced Durability: Mechanical keyboards are built to last. Each key switch is tested for millions of keystrokes, ensuring longevity and reliable performance even with heavy use.
                 </p>
             </section>
-            <section className="w-[43%] h-full bg-blue-50 flex items-center justify-center">
+            <section className="w-[43%] h-full bg-blue-50 flex items-center justify-center xsm:hidden sm:hidden lg:flex">
                 <img style={{borderRadius:'10px'}} width={350} src={keyboardPic} alt="" />
             </section>
         </div>

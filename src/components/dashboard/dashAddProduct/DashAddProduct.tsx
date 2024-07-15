@@ -55,8 +55,8 @@ const DashAddProduct = () => {
 
     return (
         <div className="w-full h-[400px] mb-3">
-            <div className="flex items-baseline justify-between">
-                <div className="w-[400px] flex items-baseline justify-between">
+            <div className="lg:flex lg:items-baseline lg:justify-between sm:flex-wrap xsm:flex-wrap">
+                <div className="lg:w-[400px] sm:w-full xsm:w-full flex items-baseline justify-between ">
                     <div className="leading-10">
                         <label htmlFor="">Title :</label>
                         <br />
@@ -90,7 +90,7 @@ const DashAddProduct = () => {
                         ></textarea>
                     </div>
                 </div>
-                <div className="w-[300px] h-[30px]">
+                <div className="lgw-[300px] sm:w-full xsm:w-full h-[30px] ">
                     <input
                         type="file"
                         onChange={(e) => {
@@ -103,7 +103,7 @@ const DashAddProduct = () => {
                     />
                 </div>
             </div>
-            <hr />
+            <hr className="mt-4" />
             <div className="w-full h-[30px] flex items-center justify-end my-3">
                 <p onClick={handleSubmit}><Button>Add Product</Button></p>
             </div>

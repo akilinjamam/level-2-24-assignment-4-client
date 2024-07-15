@@ -8,6 +8,7 @@ import Button from "../button/Button";
 import { TSelectQuantity, updateQuantity } from "../redux/features/addProductSlice";
 import { addProductInputForEdit } from "./inputFieldsForEdit";
 import { TProductItem } from "../featuredProducts/productItems";
+import { toast } from "react-toastify";
 
 type TEditProduct = {
     _id?: string;
@@ -40,7 +41,7 @@ const Modal = () => {
         }
     }, [data]);
 
-    const handleEdit = () => {
+    const handleEdit = async() => {
         const { price, availableQuantity, rating, ...remaining } = product as unknown as TEditProduct & TSelectQuantity;
 
         const newData = {
@@ -50,9 +51,10 @@ const Modal = () => {
             availableQuantity: parseInt(availableQuantity),
         };
 
-        updateData(newData);
+        await updateData(newData);
         console.log(status);
         dispatch(openModal({ type: 'editModal', open: false }));
+        toast.success('update successfully done')
 
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         const { description, ...restData } = newData;
@@ -66,7 +68,7 @@ const Modal = () => {
 
     return (
         <div className={`${open ? 'flex' : 'hidden'} absolute top-0 w-[100%] h-[100%] justify-center items-center`}>
-            <div className={`${type === 'deleteModal' ? 'block' :'hidden'} w-[50%] h-[400px] bg-purple-200 p-3`}>
+            <div className={`${type === 'deleteModal' ? 'block' :'hidden'} lg:w-[50%] sm:w-[90%] xsm:w-[900%] h-[400px] bg-purple-200 p-3`}>
                 <div className="w-full h-[30px] flex items-center justify-end">
                     <p className="cursor-pointer" onClick={()  => dispatch(openModal({type: 'openModal', open: false}))}>{deleted}</p>
                 </div>
@@ -81,7 +83,7 @@ const Modal = () => {
                 </div>
             </div>
             {/* Edit modal */}
-            <div className={`${type === 'editModal' ? 'block' :'hidden'} w-[50%] h-[400px] bg-purple-200 p-3`}>
+            <div className={`${type === 'editModal' ? 'block' :'hidden'} lg:w-[50%] sm:w-full xsm:w-full h-[400px] bg-purple-200 p-3`}>
                 <div className="w-full h-[30px] flex items-center justify-end">
                     <p className="cursor-pointer" onClick={() => dispatch(openModal({ type: 'editModal', open: false }))}>{deleted}</p>
                 </div>

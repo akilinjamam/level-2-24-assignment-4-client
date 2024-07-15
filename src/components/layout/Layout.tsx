@@ -9,7 +9,7 @@ interface ILayoutProps {
 
 const Layout = ({children}:ILayoutProps) => {
     return (
-        <div className={` lg:w-[1200px] md:w-full h-auto m-auto`}>
+        <div className={` lg:w-[1200px] md:w-full sm:w-full xsm:w-full px-3 h-auto m-auto`}>
         <Navbar/>
         <ToastContainer/>
         {children}

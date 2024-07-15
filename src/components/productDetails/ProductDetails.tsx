@@ -33,11 +33,11 @@ const ProductDetails = () => {
 
 
     return (
-        <div className={`${detail.main} w-full h-[500px] bg-purple-50 rounded-lg p-3 flex items-center justify-between`}>
-            <section className="w-[50%] h-full bg-yellow-100 rounded-lg ">
+        <div className={`${detail.main} w-full lg:h-[500px] sm:h-auto xsm:h-auto bg-purple-50 rounded-lg p-3 lg:flex lg:items-center lg:justify-between xsm:my-3 sm:my-3 lg:my-0`}>
+            <section className="lg:w-[50%] sm:w-full xsm:w-full h-full bg-yellow-100 rounded-lg ">
                 <img style={{width:'100%', height:'100%', borderRadius:'10px'}} src={findProduct?.img} alt="" />
             </section>
-            <section style={{position:'relative'}} className="w-[49%] h-full rounded-lg p-3 leading-9 ">
+            <section style={{position:'relative'}} className="lg:w-[49%] sm:w-full xsm:w-full h-full rounded-lg p-3 leading-9 ">
                 <p>Title: {findProduct?.title}</p>
                 <p>Brand: {findProduct?.brand}</p>
                 <p>Available Quantity: {findProduct?.availableQuantity}</p>

@@ -30,7 +30,7 @@ const Checkout = () => {
     const {product} = useAppSelector(state => state.product);
     const dispath = useAppDispatch()
 
-    console.log(product)
+
 
     const findProduct = product?.find((_f,i) => (i+1) === parseInt(id as string)) as TProductItem & TSelectQuantity
 
@@ -72,10 +72,10 @@ const Checkout = () => {
 
 
     return (
-        <div className={`${checkout.main} w-full h-[350px] bg-purple-50 rounded-log p-3 text-gray-600`}>
+        <div className={`${checkout.main} w-full lg:h-[350px]  bg-purple-50 rounded-log p-3 text-gray-600 rounded-lg`}>
            <p className="my-3 text-gray-600 text-2xl font-bold">Give us Delivery Info:</p>
            <hr />
-            <div className='flex items-center justify-between w-full h-[200px]'>
+            <div className='lg:flex lg:items-center lg:justify-between w-full lg:h-[200px] sm:h-full xsm:h=full'>
                 <div className='w-[50%] h-full'>
                     <div className='flex items-center justify-between w-[250px] my-3'>
                         <div className='leading-9'>
@@ -100,7 +100,7 @@ const Checkout = () => {
                         </div>
                     </div>
                 </div>
-                <div className='w-[50%] h-[100%]  p-3'>
+                <div className='w-[50%] h-[100%]  lg:p-3 sm:p-0 xsm:p-0'>
                     <p className='my-3 font-bold '>Product: {findProduct?.title}</p>
                     <div className='flex items-center justify-between'>
                         <div className='w-[90%] h-full'>

@@ -32,8 +32,8 @@ const DashProduct = () => {
                                     <td>{item?.price}</td>
                                     <td>{item?.brand}</td>
                                     <td >
-                                        <button onClick={() => dispatch(openModal({type: 'editModal', open: true, data: item}))} className='py-1 px-3 rounded-lg bg-green-400 text-white font-bold '>Edit</button>
-                                        <button onClick={() => dispatch(openModal({type: 'deleteModal', open: true, value: item?.title, id: item?._id}))}  className='py-1 px-3 rounded-lg bg-red-400 text-white font-bold ml-10'>Delete</button>    
+                                        <button onClick={() => dispatch(openModal({type: 'editModal', open: true, data: item}))} className='py-1 px-3 rounded-lg bg-green-400 text-white font-bold lg:mb-0 xsm:mb-3 sm:mb-3 '>Edit</button>
+                                        <button onClick={() => dispatch(openModal({type: 'deleteModal', open: true, value: item?.title, id: item?._id}))}  className='py-1 px-3 rounded-lg bg-red-400 text-white font-bold lg:ml-10 xsm:ml-0 sm:ml-0'>Delete</button>    
                                     </td>
                                 </tr>
                             )

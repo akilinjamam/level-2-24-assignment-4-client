@@ -71,7 +71,7 @@ const Navbar = () => {
                             
                        </div>
                         
-                        <div  className={` ${view ? 'block': 'hidden'} w-[140px] h-auto p-3 bg-purple-100 rounded-lg z-10 absolute right-0 top-10`}>
+                        <div  className={` ${view ? 'block': 'hidden'} w-[140px] h-auto p-3 bg-purple-100 rounded-lg z-10 absolute right-5 top-10`}>
                         {
                             navManuRoutes.map((nav:TNav, index:number) => {
                                     const active = (value: string) => {
@@ -79,7 +79,7 @@ const Navbar = () => {
                                 }
                                 return (
                                 <div className='leading-8' key={index+1}>
-                                    <NavLink className={`mx-[20px] font-bold ${active(`${nav.link}`)} hover:text-purple-600 `} to={nav.link}>{nav.name}</NavLink>
+                                    <NavLink onClick={() => setView(false)} className={`mx-[20px] font-bold ${active(`${nav.link}`)} hover:text-purple-600 `} to={nav.link}>{nav.name}</NavLink>
                                 </div>
                             )
                             })

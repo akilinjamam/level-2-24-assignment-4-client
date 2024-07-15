@@ -3,6 +3,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { allReviews } from './allReviews';
 import Slider from 'react-slick';
+import reviews from './CustomerReview.module.css';
 
 const CustomerReview = () => {
     const settings = {
@@ -15,10 +16,10 @@ const CustomerReview = () => {
         arrows: false
       };
     return (
-        <div className="w-full h-[450px] flex items-center justify-between my-6">
-            <section className="w-[590px] h-full bg-purple-50 p-3">
-                <p className='my-6 text-3xl font-bold text-gray-700'>CUSTOMER REVIEWS</p>
-                <div className='w-full h-[290px] m-auto'>
+        <div className={`${reviews.main} w-full sm:w-full xsm:w-full  h-[450px] xsm:h-auto sm:h-auto flex items-center justify-between my-6 `}>
+            <section className="lg:w-[565px] sm:w-fullm-b xsm:w-full h-full  p-3  bg-purple-50 rounded-lg xsm:mb-3 lg:mb-0 md:mb-0">
+                <p className='my-6 text-3xl font-bold text-gray-700 sm:text-center xsm:text-center lg:text-left'>CUSTOMER REVIEWS</p>
+                <div className='w-full h-[290px] m-auto '>
                     <Slider {...settings}>
                         {
                             allReviews.map(review => {
@@ -39,7 +40,7 @@ const CustomerReview = () => {
                 </div>
 
             </section>
-            <section className="w-[590px] h-full bg-purple-50 flex items-center justify-center">
+            <section className="w-[590px] h-full bg-purple-50 flex items-center justify-center rounded-lg">
                 <img width={400} src={review} alt="" />
             </section>
         </div>

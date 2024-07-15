@@ -2,11 +2,11 @@ import keyboardPic from '../../images/support.jpg'
 import about from './Contact.module.css';
 const Contact = () => {
     return (
-        <div className={`${about.main} w-full h-[500px] bg-purple-50 rounded-lg my-6 flex items-center justify-between p-3`}>
-        <section className="w-[43%] h-full bg-blue-50 flex items-center justify-center">
+        <div className={`${about.main} w-full h-[500px] bg-purple-50 rounded-lg my-6 lg:flex lg:items-center lg:justify-between p-3`}>
+        <section className="lg:w-[43%] sm:w-full xsm:w-full h-full bg-blue-50 flex items-center justify-center">
             <img style={{borderRadius:'10px'}} width={450} src={keyboardPic} alt="" />
         </section>
-        <section className="w-[48%] h-full">
+        <section className="lg:w-[48%] sm:w-full xsm:w-full h-full">
             <p className="text-gray-700 text-3xl font-bold my-6">Contact Us </p>
             <hr />
             <p className="text-gray-700 my-3">
