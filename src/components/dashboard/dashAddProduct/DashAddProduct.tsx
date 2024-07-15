@@ -8,6 +8,18 @@ import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
 const DashAddProduct = () => {
+
+    type TAddProduct = {
+        img?: string;
+        title: string;
+        brand: string;
+        price: string;
+        availableQuantity: string;
+        rating: string;
+        description?: string;
+    }
+
+
     const navigate = useNavigate();
     const [imgHolder, setImgHolder] = useState('');
     console.log(imgHolder);
@@ -21,7 +33,7 @@ const DashAddProduct = () => {
         description: "",
     };
     
-    const [product, setProduct] = useState(initialProducts);
+    const [product, setProduct] = useState<TProductItem | Partial<TProductItem>>(initialProducts);
     const [addProduct] = useAddProductMutation();
 
     const handleSubmit = (e: FormEvent) => {
@@ -29,13 +41,13 @@ const DashAddProduct = () => {
         console.log(product);
 
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        const { rating, price, availableQuantity, img, ...remaining } = product;
+        const { rating, price, availableQuantity, img, ...remaining } = product as unknown as TAddProduct
 
         const allData = {
             ...remaining,
-            rating: rating,
-            price: price,
-            availableQuantity: availableQuantity,
+            rating: parseInt(rating),
+            price:  parseInt(price),
+            availableQuantity: parseInt(availableQuantity),
             img: imgHolder
         };
 
