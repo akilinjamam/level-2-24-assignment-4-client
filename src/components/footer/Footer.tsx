@@ -1,6 +1,7 @@
 import { navManuRoutes } from "../navbar/menuRoutes";
 import { socialIcons } from "./socialIcons";
 import footer from './Footer.module.css';
+import { NavLink } from "react-router-dom";
 
 const Footer = () => {
     return (
@@ -10,7 +11,7 @@ const Footer = () => {
                 {
                     navManuRoutes.map(nav => {
                         return (
-                            <p className="leading-7">{nav.name}</p>
+                            <NavLink to={nav.link}><p className="leading-7 cursor-pointer">{nav.name}</p></NavLink>
                         )
                     })
                 }
@@ -20,7 +21,7 @@ const Footer = () => {
                 {
                     navManuRoutes?.slice(2,4).map((nav, index) => {
                         return (
-                            <p key={index+1} className="leading-7">{nav.name}</p>
+                            <NavLink key={index+1} to={nav.link}><p className="leading-7 cursor-pointer">{nav.name}</p></NavLink>
                         )
                     })
                 }
