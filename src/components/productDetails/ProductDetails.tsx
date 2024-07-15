@@ -5,13 +5,13 @@ import { countStars } from "../featuredProducts/startCount";
 import detail from './ProductDetail.module.css';
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { addProduct, increaseAndDecreaseQuantity,  } from "../redux/features/addProductSlice";
-import { useGetProductsQuery } from "../redux/api/api";
+import { useGetProductsForDashboardQuery } from "../redux/api/api";
 const ProductDetails = () => {
 
     const {id} = useParams();
     const navigate = useNavigate()
     
-    const {data: products} = useGetProductsQuery('')
+    const {data: products} = useGetProductsForDashboardQuery('')
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const findProduct = products?.data?.find((_f:any,i:number) => (i+1) === parseInt(id as string) ) as TProductItem

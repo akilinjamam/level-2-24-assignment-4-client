@@ -8,14 +8,41 @@ export const baseApi = createApi({
   tagTypes: ["products"],
   endpoints: (builder) => ({
     getProducts: builder.query({
-      query: (title) => {
+      query: ({ search, minPrice, maxPrice, sort }) => {
         const params = new URLSearchParams();
-
-        if (title) {
-          params.append("title", title);
+        if (search) {
+          params.append("search", search);
         }
 
-        return { url: "/products", method: "GET", params: params };
+        if (minPrice !== undefined) {
+          params.append("min", minPrice);
+        }
+        if (maxPrice !== undefined) {
+          params.append("max", maxPrice);
+        }
+        if (maxPrice !== undefined) {
+          params.append("sort", sort);
+        }
+
+        return { url: `/products?${params.toString()}`, method: "GET" };
+      },
+      providesTags: ["products"],
+    }),
+    getProductsForDashboard: builder.query({
+      query: () => {
+        return { url: `/products`, method: "GET" };
+      },
+      providesTags: ["products"],
+    }),
+    getMinPriceProducts: builder.query({
+      query: () => {
+        return { url: "/products/minPrice", method: "GET" };
+      },
+      providesTags: ["products"],
+    }),
+    getMaxPriceProducts: builder.query({
+      query: () => {
+        return { url: "/products/maxPrice", method: "GET" };
       },
       providesTags: ["products"],
     }),
@@ -45,6 +72,9 @@ export const baseApi = createApi({
 
 export const {
   useGetProductsQuery,
+  useGetProductsForDashboardQuery,
+  useGetMinPriceProductsQuery,
+  useGetMaxPriceProductsQuery,
   useAddProductMutation,
   useUpdateProductMutation,
   useDeleteProductMutation,

@@ -3,7 +3,7 @@ import cart from './Cart.module.css';
 // import { NavLink } from "react-router-dom";
 import { countStars } from "../featuredProducts/startCount";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
-
+import notFound from '../../images/not-found.png'
 import { deleted, leftArrow , rightArrow } from "../../icons/icons";
 import { deleteProduct, increaseAndDecreaseQuantity, TSelectQuantity } from "../redux/features/addProductSlice";
 import { TProductItem } from '../featuredProducts/productItems';
@@ -50,6 +50,8 @@ const Cart = () => {
         <div className={`${cart.main}`}>
             
             {
+                product.length > 0
+                ?
                 product.map((item, index) => {
                     return (
                         <div key={index+1} className="w-full h-[350px] bg-purple-50 rounded-lg my-6 p-3 flex items-center justify-between">
@@ -87,6 +89,10 @@ const Cart = () => {
                         </div>
                     )
                 })
+                :
+                <div className="w-full h-[330px] bg-purple-50 my-6 rounded-lg flex items-center justify-center">
+                        <img width={400} src={notFound} alt="" />
+                </div>
             }
 
             <div className="w-full h-[50px] bg-purple-50 rounded-lg my-6 flex items-center justify-end font-bold text-gray-600 px-2">

@@ -9,6 +9,16 @@ import { TSelectQuantity, updateQuantity } from "../redux/features/addProductSli
 import { addProductInputForEdit } from "./inputFieldsForEdit";
 import { TProductItem } from "../featuredProducts/productItems";
 
+type TEditProduct = {
+    _id?: string;
+    img?: string;
+    title: string;
+    brand: string;
+    price: string;
+    availableQuantity: string;
+    rating: string;
+    description?: string;
+}
 
 
 const Modal = () => {
@@ -31,13 +41,13 @@ const Modal = () => {
     }, [data]);
 
     const handleEdit = () => {
-        const { price, availableQuantity, rating, ...remaining } = product as TProductItem & TSelectQuantity;
+        const { price, availableQuantity, rating, ...remaining } = product as unknown as TEditProduct & TSelectQuantity;
 
         const newData = {
             ...remaining,
-            price: price!,
-            rating: rating!,
-            availableQuantity: availableQuantity!,
+            price: parseInt(price),
+            rating: parseInt(rating),
+            availableQuantity: parseInt(availableQuantity),
         };
 
         updateData(newData);

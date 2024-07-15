@@ -1,16 +1,16 @@
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-
+import notFound from '../../images/not-found.png'
 import Slider from "react-slick";
 import { countStars } from "./startCount";
 import Button from "../button/Button";
 import { NavLink} from "react-router-dom";
-import { useGetProductsQuery } from "../redux/api/api";
+import { useGetProductsForDashboardQuery} from "../redux/api/api";
 import { TProductItem } from "./productItems";
 
 const Featured = () => {
     
-   const {data: allProducts} = useGetProductsQuery('')
+   const {data: allProducts} = useGetProductsForDashboardQuery('')
 
 
 console.log(allProducts?.data)
@@ -32,7 +32,8 @@ console.log(allProducts?.data)
             </div>
             <div className="my-6">
               <Slider {...settings}>
-                    {
+                    {allProducts?.data?.length > 0 
+                    ?
                          allProducts?.data?.map((items:TProductItem, index:number) => {
                          return (
                              <div key={index+1}>
@@ -55,6 +56,10 @@ console.log(allProducts?.data)
                              </div>
                          )
                          })
+                         :
+                         <div className="w-full h-[330px] bg-purple-50 my-6 rounded-lg flex items-center justify-center">
+                        <img width={400} src={notFound} alt="" />
+                    </div>
                     }
              </Slider>
             </div>
