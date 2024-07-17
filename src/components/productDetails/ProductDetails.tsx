@@ -15,20 +15,25 @@ const ProductDetails = () => {
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const findProduct = products?.data?.find((_f:any,i:number) => (i+1) === parseInt(id as string) ) as TProductItem
-    console.log(findProduct)
+  
     const dispatch = useAppDispatch();
+
     const {product} = useAppSelector(state => state.product)
+   
 
-    const findCartProduct = product?.find((_f, i) => (i+1) === parseInt(id as string) )
 
-    const addProducts = () => {
+    const findCartProduct = product?.find(f => f?._id === findProduct?._id )
+   
+    
 
+    const addProducts = () => { 
+        navigate(`/cart/${id}`)
         if(findCartProduct){
-            dispatch(increaseAndDecreaseQuantity({id: parseInt(id as string), data: product, type: 'addFromCart' }))
+            dispatch(increaseAndDecreaseQuantity({id: findCartProduct?._id as string, data: product, type: 'addFromCart' }))
+          
         }else{
             dispatch(addProduct(findProduct))
         }
-        navigate(`/cart/${id}`)
     }
 
 

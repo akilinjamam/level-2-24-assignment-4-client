@@ -22,11 +22,11 @@ const productSlice = createSlice({
     },
     increaseAndDecreaseQuantity: (
       state,
-      action: PayloadAction<{ id: number; data?: TProductItem[]; type: string }>
+      action: PayloadAction<{ id: string; data?: TProductItem[]; type: string }>
     ) => {
       const cartData = action?.payload?.data;
       const increaseQuantity = cartData?.find(
-        (_f, i) => i + 1 === action.payload.id
+        (f) => f?._id === action.payload.id
       ) as TProductItem;
 
       const { selectQuantity, ...remaining } =
@@ -60,13 +60,13 @@ const productSlice = createSlice({
         action.payload.type === "addFromCart" ||
         action.payload.type === "increaseBtn"
       ) {
-        state.product = cartData?.map((item, index) => {
-          return index + 1 === action.payload.id ? updatedData : item;
+        state.product = cartData?.map((item) => {
+          return item?._id === action.payload.id ? updatedData : item;
         }) as (TProductItem & TSelectQuantity)[];
       }
       if (action.payload.type === "decreaseBtn") {
-        state.product = cartData?.map((item, index) => {
-          return index + 1 === action.payload.id ? updatedData : item;
+        state.product = cartData?.map((item) => {
+          return item?._id === action.payload.id ? updatedData : item;
         }) as (TProductItem & TSelectQuantity)[];
       }
     },

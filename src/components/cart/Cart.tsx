@@ -73,9 +73,9 @@ const Cart = () => {
                                 <div className="w-full flex justify-between">
                                     <p>Selected Qunatity:</p>
                                     <div className="w-[80px] flex items-center justify-between">
-                                        <p className="cursor-pointer" onClick={() => dispatch(increaseAndDecreaseQuantity({id: (index+1), data: product, type: 'decreaseBtn'}))}>{leftArrow}</p>
+                                        <p className="cursor-pointer" onClick={() => dispatch(increaseAndDecreaseQuantity({id: item?._id as string, data: product, type: 'decreaseBtn'}))}>{leftArrow}</p>
                                         <p>{item.selectQuantity}</p>
-                                        <p className="cursor-pointer" onClick={() => dispatch(increaseAndDecreaseQuantity({id: (index+1), data: product, type: 'increaseBtn'}))}>{rightArrow}</p>
+                                        <p className="cursor-pointer" onClick={() => dispatch(increaseAndDecreaseQuantity({id: item?._id as string, data: product, type: 'increaseBtn'}))}>{rightArrow}</p>
                                     </div>
                                 </div>
                             
